@@ -26,26 +26,34 @@ void main() {
 
     Get.reset();
     Get.put(MainNavController());
-    Get.put(HomeController());
-    Get.put(CoursesController());
-    Get.put(LearningController());
-    Get.put(WishlistController());
-    Get.put(AuthController());
 
     await tester.pumpWidget(
       GetMaterialApp(
-        home: const CertificatePrintView(),
-        getPages: AppPages.routes,
+        home: Scaffold(
+          body: Builder(
+            builder: (context) => ElevatedButton(
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const CertificatePrintView()),
+              ),
+              child: const Text('Open Cert'),
+            ),
+          ),
+        ),
       ),
     );
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Open Cert'));
     await tester.pumpAndSettle();
 
     expect(find.text('AH-LEARNOVA ACADEMY'), findsOneWidget);
     expect(find.text('CERTIFICATE OF COMPLETION'), findsOneWidget);
     expect(find.byIcon(Icons.arrow_back), findsOneWidget);
+
     await tester.tap(find.byIcon(Icons.arrow_back));
     await tester.pumpAndSettle();
-    expect(tester.takeException(), isNull);
+
+    expect(find.text('Open Cert'), findsOneWidget);
   });
 
   testWidgets('Wishlist tab back button navigates back to Home tab', (WidgetTester tester) async {

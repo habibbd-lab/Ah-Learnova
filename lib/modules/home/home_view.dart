@@ -38,25 +38,28 @@ class HomeView extends GetView<HomeController> {
                         child: const Icon(Icons.school_rounded, color: Colors.white, size: 22),
                       ),
                       const SizedBox(width: 10),
-                      const Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            AppStrings.appName,
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.textDark,
-                              letterSpacing: -0.5,
+                      const Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              AppStrings.appName,
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.textDark,
+                                letterSpacing: -0.5,
+                              ),
+                              overflow: TextOverflow.ellipsis,
                             ),
-                          ),
-                          Text(
-                            'Production Learning Ecosystem',
-                            style: TextStyle(fontSize: 11, color: AppColors.textMuted),
-                          ),
-                        ],
+                            Text(
+                              'Production Learning Ecosystem',
+                              style: TextStyle(fontSize: 11, color: AppColors.textMuted),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
+                        ),
                       ),
-                      const Spacer(),
                       IconButton(
                         onPressed: () => Get.toNamed('/compare'),
                         icon: const Icon(Icons.compare_arrows_rounded, color: AppColors.primary),
@@ -113,9 +116,12 @@ class HomeView extends GetView<HomeController> {
                             children: [
                               Icon(Icons.verified, size: 14, color: AppColors.accent),
                               SizedBox(width: 4),
-                              Text(
-                                'Enterprise Masterclasses',
-                                style: TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.w600),
+                              Flexible(
+                                child: Text(
+                                  'Enterprise Masterclasses',
+                                  style: TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.w600),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                               ),
                             ],
                           ),
